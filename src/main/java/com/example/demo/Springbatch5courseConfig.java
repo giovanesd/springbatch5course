@@ -30,13 +30,13 @@ public class Springbatch5courseConfig {
 	@Bean
 	public Step imprimeOlaMundoStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("imprimeOlaMundoStep", jobRepository)
-				.tasklet(imprileOlaMundoTasklet(null), transactionManager)
+				.tasklet(imprimeOlaMundoTasklet(null), transactionManager)
 				.build();
 	}
 	
 	@Bean
 	@StepScope
-	public Tasklet imprileOlaMundoTasklet(@Value("#{jobParameters['name']}") String name) {
+	public Tasklet imprimeOlaMundoTasklet(@Value("#{jobParameters['name']}") String name) {
 		return (StepContribution contribution, ChunkContext chunkContext) -> {
 			System.out.println("Olá Mundo! " + name + "!");
 			return RepeatStatus.FINISHED;		
